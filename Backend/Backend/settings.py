@@ -38,9 +38,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'djoser',
+    'rest_framework_simplejwt',
+    'rest_framework.authtoken',
+    'django_rest_passwordreset',
     'BackendRentalCar',
     'Vehicule',
     'Client',
+    'Conducteur',
+    'Contrat',
+    'Caution',
+    'Authentification',
+     
 ]
 
 MIDDLEWARE = [
@@ -79,10 +88,15 @@ WSGI_APPLICATION = 'Backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'RentalCar',
+        'USER': 'postgres',
+        'PASSWORD': '123',
+        'HOST': 'localhost',  
+        'PORT': '5432',       
     }
 }
+
 
 
 # Password validation
