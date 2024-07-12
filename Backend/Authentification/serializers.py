@@ -13,9 +13,13 @@ from django.urls import reverse
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'gender', 'username', 'email', 'first_name', 'last_name', 'cin', 'date_of_birth',
-                  'place_of_birth', 'nationality', 'phone', 'address', 'img', 'role', 'function', 'is_verified', 'created_at', 'updated_at')
+        fields = (
+            'id', 'gender', 'username', 'email', 'first_name', 'last_name', 'cin', 'date_of_birth',
+            'place_of_birth', 'nationality', 'phone', 'address', 'img', 'role', 'function', 'is_verified', 
+            'created_at', 'updated_at'
+        )
         read_only_fields = ('id', 'is_verified', 'created_at', 'updated_at')
+        ref_name = "CustomUserSerializer"  # Ajout du nom de référence unique
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -25,6 +29,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'email', 'password', 'role')
         extra_kwargs = {'password': {'write_only': True}}
+        ref_name = "CustomRegisterSerializer"  # Ajout du nom de référence unique
 
     def create(self, validated_data):
         user = User.objects.create_user(
@@ -40,9 +45,15 @@ class ChangePasswordSerializer(serializers.Serializer):
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
 
+    class Meta:
+        ref_name = "CustomChangePasswordSerializer"  # Ajout du nom de référence unique
+
 
 class PasswordResetSerializer(serializers.Serializer):
     email = serializers.EmailField()
+
+    class Meta:
+        ref_name = "CustomPasswordResetSerializer"  # Ajout du nom de référence unique
 
     def validate_email(self, value):
         user = User.objects.filter(email=value).first()
@@ -67,3 +78,6 @@ class PasswordResetSerializer(serializers.Serializer):
 
 class SetNewPasswordSerializer(serializers.Serializer):
     new_password = serializers.CharField(required=True)
+
+    class Meta:
+        ref_name = "CustomSetNewPasswordSerializer"  # Ajout du nom de référence unique

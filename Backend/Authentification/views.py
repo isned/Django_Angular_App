@@ -14,7 +14,7 @@ from django.core.mail import send_mail
 from django.urls import reverse
 from django.utils.encoding import force_bytes, force_str
 
-from authentification.serializers import PasswordResetSerializer, RegisterSerializer, UserSerializer, ChangePasswordSerializer
+from Authentification.serializers import PasswordResetSerializer, RegisterSerializer, UserSerializer, ChangePasswordSerializer
 from .models import User
 
 class LoginView(ObtainAuthToken):
