@@ -1,3 +1,4 @@
+
 from django.urls import path
 from .views import PaiementListCreateAPIView, PaiementDetailAPIView  # Assurez-vous d'importer correctement vos vues
 

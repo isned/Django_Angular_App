@@ -1,6 +1,9 @@
 from django.shortcuts import render
 
 # Create your views here.
+from django.shortcuts import render
+
+# Create your views here.
 from django.shortcuts import get_object_or_404
 from rest_framework import generics
 from .models import Paiement  # Assurez-vous que Paiement est correctement importé
