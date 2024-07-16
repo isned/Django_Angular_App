@@ -24,9 +24,11 @@ urlpatterns = [
     path('api/', include('Vehicule.urls')),
     path('api/', include('Client.urls')),
     path('api/', include('Conducteur.urls')),
-     path('api/', include('Caution.urls')),
+     path('api/', include('Marque.urls')),
     path('api/', include('Contrat.urls')),
-    path('api/Authentification/', include("Authentification.urls")),
+    path('api/', include('Paiement.urls')),
+    path('api/authentification/', include("Authentification.urls")),
     path('api/v1/', include('djoser.urls')),
     path('api/v1/', include('djoser.urls.authtoken')),
+     
 ]

@@ -48,8 +48,9 @@ INSTALLED_APPS = [
     'Client',
     'Conducteur',
     'Contrat',
-    'Caution',
+    'Marque',
     'Authentification',
+    'Paiement',
      
 ]
 
