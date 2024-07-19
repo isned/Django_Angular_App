@@ -10,9 +10,9 @@ from .views import (
 urlpatterns = [
     path('register/', RegisterView.as_view(), name="register"),
     path('login/', LoginView.as_view(), name="login"),
-    path('users/', ListUsers.as_view(), name='auth_list_users'),
-    path('users/update/<int:pk>/', UpdateUserAPIView.as_view(), name="department_update"),
-    path('users/detail/<int:pk>/', DetailUser.as_view(), name='detail_users'),
+    path('user/', ListUsers.as_view(), name='auth_list_users'),
+    path('user/update/<int:pk>/', UpdateUserAPIView.as_view(), name="department_update"),
+    path('user/detail/<int:pk>/', DetailUser.as_view(), name='detail_users'),
     path('delete/<int:pk>/', DeleteUserAPIView.as_view(), name="user_delete"),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/password_reset/', include('django_rest_passwordreset.urls', namespace='password_reset')),

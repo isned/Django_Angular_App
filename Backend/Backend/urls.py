@@ -27,8 +27,9 @@ urlpatterns = [
      path('api/', include('Marque.urls')),
     path('api/', include('Contrat.urls')),
     path('api/', include('Paiement.urls')),
-    path('api/authentification/', include("Authentification.urls")),
-    path('api/v1/', include('djoser.urls')),
-    path('api/v1/', include('djoser.urls.authtoken')),
-     
+   
+    
+    path('api/', include('CategorieVehicule.urls')),
+    path('api/auth/', include('Auth.urls')),
+   
 ]
