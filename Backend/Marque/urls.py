@@ -5,6 +5,6 @@ from .views import (
 )
 
 urlpatterns = [
-    path('api/marque/', MarqueListCreateAPIView.as_view(), name='marque_list_create_api'),
-    path('api/marque/<int:pk>/', MarqueRetrieveUpdateDestroyAPIView.as_view(), name='marque_detail_api'),
+    path('marque/', MarqueListCreateAPIView.as_view(), name='marque_list_create_api'),
+    path('marque/<int:pk>/', MarqueRetrieveUpdateDestroyAPIView.as_view(), name='marque_detail_api'),
 ]

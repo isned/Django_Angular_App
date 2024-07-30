@@ -1,0 +1,76 @@
+.custom-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #343a40;
+    padding: 0 20px;
+    height: 60px;
+    color: #fff;
+  }
+  
+  .custom-navbar .navbar-brand {
+    font-size: 1.5rem;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .custom-navbar .navbar-toggler {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .custom-navbar .navbar-toggler-icon::before {
+    content: '\f0c9'; /* FontAwesome icon */
+    font-family: FontAwesome;
+  }
+  
+  .custom-navbar .navbar-menu {
+    display: flex;
+    align-items: center;
+  }
+  
+  .custom-navbar .navbar-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .custom-navbar .nav-item {
+    margin-left: 15px;
+  }
+  
+  .custom-navbar .nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .custom-navbar .nav-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .custom-navbar .navbar-menu {
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      background-color: #343a40;
+      width: 100%;
+      display: none;
+    }
+  
+    .custom-navbar .navbar-menu.show {
+      display: flex;
+    }
+  
+    .custom-navbar .nav-item {
+      margin-left: 0;
+      margin-top: 10px;
+    }
+  }
+  

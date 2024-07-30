@@ -1,0 +1,25 @@
+<!-- Main container for the vehicle list -->
+<div class="vehicle-container">
+    <h2>Liste des Véhicules</h2>
+    
+    <!-- Check if there are vehicles to display -->
+    <ng-container *ngIf="vehicules.length > 0; else noVehicles">
+      <!-- Iterate through each vehicle -->
+      <div *ngFor="let vehicule of vehicules" class="vehicle-card">
+        <h3>{{ vehicule.marque }} {{ vehicule.modele }}</h3>
+        <p><strong>Immatriculation:</strong> {{ vehicule.immatriculation }}</p>
+        <p><strong>Couleur:</strong> {{ vehicule.couleur }}</p>
+        <p><strong>Année:</strong> {{ vehicule.annee }}</p>
+        <p><strong>État:</strong> {{ vehicule.etat }}</p>
+        <p><strong>Carburant:</strong> {{ vehicule.carburant }}</p>
+        <p><strong>Date d'immatriculation:</strong> {{ vehicule.date_immatriculation | date }}</p>
+        <p><strong>Kilométrage:</strong> {{ vehicule.kilometrage }} km</p>
+      </div>
+    </ng-container>
+  
+    <!-- Template for when no vehicles are available -->
+    <ng-template #noVehicles>
+      <p>Aucun véhicule disponible.</p>
+    </ng-template>
+  </div>
+  
