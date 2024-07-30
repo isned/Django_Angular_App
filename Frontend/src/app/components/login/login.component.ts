@@ -16,10 +16,11 @@ export class LoginComponent {
   login(): void {
     this.apiService.login(this.email, this.password).subscribe(
       response => {
-        // Stocker le token dans le localStorage
+     
         localStorage.setItem('access_token', response.access_token);
-        // Rediriger ou afficher un message de succès
+       
         console.log('Connexion réussie');
+        
       },
       error => {
         this.errorMessage = 'Erreur lors de la connexion';

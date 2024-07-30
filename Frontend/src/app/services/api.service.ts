@@ -7,25 +7,27 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = 'http://localhost:8000/api';  // Base API URL
+  private apiUrl = 'http://localhost:8000/api'; 
 
   constructor(private http: HttpClient) { }
 
-  // Get vehicles with authorization
+  
   getVehicules(): Observable<any[]> {
-    const token = localStorage.getItem('access_token');  // Retrieve token from localStorage
+    const token = localStorage.getItem('access_token');  
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any[]>(`${this.apiUrl}/vehicule/`, { headers });
   }
-
-  // Login method
-  login(email: string, password: string): Observable<any> {
-    const body = { email, password };
-    return this.http.post<any>(`${this.apiUrl}/token/`, body);
-  }
+// Login method
+login(email: string, password: string): Observable<any> {
+  const body = { email, password };
+  return this.http.post<any>(`${this.apiUrl}/auth/login/`, body);
+}
 
   // Register method
+ // register(userData: any): Observable<any> {
+   // return this.http.post<any>(`${this.apiUrl}/auth/register/`, userData);
+  //}
   register(userData: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/register/`, userData);
+    return this.http.post<any>(`${this.apiUrl}/auth/register/`, userData);
   }
 }

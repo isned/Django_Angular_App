@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'Paiement',
     'CategorieVehicule',
     'corsheaders',
+    
      
 ]
 
