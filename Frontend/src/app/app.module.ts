@@ -12,6 +12,11 @@ import { AuthInterceptor } from './auth.interceptor';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
@@ -23,6 +28,7 @@ import { RegisterComponent } from './components/register/register.component';
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
+    NavigationComponent,
   
   
   ],
@@ -31,7 +37,10 @@ import { RegisterComponent } from './components/register/register.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule ,
-    ReactiveFormsModule,  // Add ReactiveFormsModule here
+    ReactiveFormsModule, 
+    MatSidenavModule,
+    MatListModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
