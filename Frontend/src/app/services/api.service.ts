@@ -75,6 +75,27 @@ export class ApiService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any[]>(`${this.apiUrl}/vehicule/`, { headers });
   }
+  getVehiculeById(id: string): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.apiUrl}/vehicule/${id}/`, { headers });
+  }
+  updateVehicule(id: string, vehicule: any): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<any>(`${this.apiUrl}/vehicule/${id}/`, vehicule, { headers });
+  }
+  deleteVehicule(id: number): Observable<void> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete<void>(`${this.apiUrl}/vehicule/${id}/`, { headers });
+  }
+  
+  addVehicule(vehicule: any): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<any>(`${this.apiUrl}/vehicule/`, vehicule, { headers });
+  }
 
   register(userData: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/auth/register/`, userData);

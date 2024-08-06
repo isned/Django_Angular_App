@@ -1,0 +1,13 @@
+.vehicle-details {
+    padding: 20px;
+  }
+  
+  .vehicle-details p {
+    margin: 10px 0;
+  }
+  
+  a {
+    margin-top: 20px;
+    display: inline-block;
+  }
+  

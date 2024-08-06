@@ -1,0 +1,14 @@
+<h2>Détails du Véhicule</h2>
+<div class="vehicle-details">
+  <p><strong>Marque:</strong> {{ vehicule.marque }}</p>
+  <p><strong>Modèle:</strong> {{ vehicule.modele }}</p>
+  <p><strong>Immatriculation:</strong> {{ vehicule.immatriculation }}</p>
+  <p><strong>Couleur:</strong> {{ vehicule.couleur }}</p>
+  <p><strong>Année:</strong> {{ vehicule.annee }}</p>
+  <p><strong>État:</strong> {{ vehicule.etat }}</p>
+  <p><strong>Carburant:</strong> {{ vehicule.carburant }}</p>
+  <p><strong>Date d'immatriculation:</strong> {{ vehicule.date_immatriculation | date }}</p>
+  <p><strong>Kilométrage:</strong> {{ vehicule.kilometrage }} km</p>
+  <!-- Ajoutez d'autres champs si nécessaire -->
+</div>
+<a mat-button routerLink="/vehicules">Retour à la liste</a>

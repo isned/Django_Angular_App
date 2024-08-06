@@ -1,33 +1,5 @@
-/*import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../services/api.service';
-
-@Component({
-  selector: 'app-vehicule',
-  templateUrl: './vehicule.component.html',
-  styleUrls: ['./vehicule.component.css'],
-})
-export class VehiculeComponent implements OnInit {
-  vehicules: any[] = [];
-
-  constructor(private apiService: ApiService) { }
-
-  ngOnInit(): void {
-    this.getVehicules();
-  }
-
-  getVehicules(): void {
-    this.apiService.getVehicules().subscribe({
-      next: (data: any[]) => {
-        this.vehicules = data;
-      },
-      error: (err) => {
-        console.error('Erreur lors de la récupération des véhicules', err);
-      }
-    });
-  }
-}
-*/
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 
 @Component({
@@ -36,10 +8,14 @@ import { ApiService } from '../../services/api.service';
   styleUrls: ['./vehicule.component.css']
 })
 export class VehiculeComponent implements OnInit {
+test() {
+throw new Error('Method not implemented.');
+}
   vehicules: any[] = [];
   errorMessage: string = '';
+  displayedColumns: string[] = ['marque', 'modele', 'immatriculation', 'couleur', 'annee', 'etat', 'carburant', 'date_immatriculation', 'kilometrage', 'actions'];
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
     this.getVehicules();
@@ -56,4 +32,40 @@ export class VehiculeComponent implements OnInit {
       }
     );
   }
+
+  viewDetails(vehicule: any): void {
+    this.router.navigate(['/vehicules', vehicule.id]);
+  }
+
+  editVehicule(vehicule: any): void {
+    this.router.navigate(['/vehicules/edit', vehicule.id]);
+  }
+
+  deleteVehicule(vehicule: any): void {
+    console.log('Véhicule à supprimer:', vehicule); // Affichez les détails du véhicule pour débogage
+
+    if (confirm('Êtes-vous sûr de vouloir supprimer ce véhicule ?')) {
+      this.apiService.deleteVehicule(vehicule.id).subscribe(
+        () => {
+          console.log(`Véhicule avec ID ${vehicule.id} supprimé.`); // Confirmez la suppression
+          this.getVehicules(); // Recharge la liste des véhicules
+        },
+        error => {
+          this.errorMessage = 'Erreur lors de la suppression du véhicule';
+          console.error('Erreur lors de la suppression du véhicule', error);
+        }
+      );
+    }
+  }
+
+  addVehicule(): void {
+    this.router.navigate(['/vehicules/add/add']);
+  }
+
+
+  isned(): void {
+    //console.log("isned")
+    this.router.navigate(['/register']);
+  }
+  
 }

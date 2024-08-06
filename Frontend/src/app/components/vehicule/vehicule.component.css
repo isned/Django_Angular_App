@@ -1,20 +1,15 @@
 .vehicle-container {
-    padding: 20px;
-  }
-  
-  .vehicle-card {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 15px;
-    background-color: #f9f9f9;
-  }
-  
-  .vehicle-card h3 {
-    margin-top: 0;
-  }
-  
-  .vehicle-card p {
-    margin: 5px 0;
-  }
-  
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-header-cell, .mat-cell {
+  padding: 8px;
+}
+
+.mat-icon-button {
+  margin-right: 8px;
+}

@@ -1,0 +1,57 @@
+<h2>Éditer le Véhicule</h2>
+<!-- Affiche un message d'erreur ou de succès -->
+<p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+<p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+
+<!-- Formulaire pour éditer le véhicule -->
+<form (ngSubmit)="saveChanges()">
+  <div>
+    <label for="marque">Marque:</label>
+    <input id="marque" [(ngModel)]="vehicule.marque" name="marque" required>
+  </div>
+
+  <div>
+    <label for="modele">Modèle:</label>
+    <input id="modele" [(ngModel)]="vehicule.modele" name="modele" required>
+  </div>
+
+  <div>
+    <label for="immatriculation">Immatriculation:</label>
+    <input id="immatriculation" [(ngModel)]="vehicule.immatriculation" name="immatriculation" required>
+  </div>
+
+  <div>
+    <label for="couleur">Couleur:</label>
+    <input id="couleur" [(ngModel)]="vehicule.couleur" name="couleur">
+  </div>
+
+  <div>
+    <label for="annee">Année:</label>
+    <input id="annee" type="number" [(ngModel)]="vehicule.annee" name="annee">
+  </div>
+
+  <div>
+    <label for="etat">État:</label>
+    <input id="etat" [(ngModel)]="vehicule.etat" name="etat">
+  </div>
+
+  <div>
+    <label for="carburant">Carburant:</label>
+    <input id="carburant" [(ngModel)]="vehicule.carburant" name="carburant">
+  </div>
+
+  <div>
+    <label for="date_immatriculation">Date d'immatriculation:</label>
+    <input id="date_immatriculation" type="date" [(ngModel)]="vehicule.date_immatriculation" name="date_immatriculation">
+  </div>
+
+  <div>
+    <label for="kilometrage">Kilométrage:</label>
+    <input id="kilometrage" type="number" [(ngModel)]="vehicule.kilometrage" name="kilometrage">
+  </div>
+
+  <!-- Ajoutez d'autres champs si nécessaire -->
+
+  <button mat-button type="submit">Enregistrer</button>
+  <button mat-button (click)="onCancel()">Annuler</button>
+</form>

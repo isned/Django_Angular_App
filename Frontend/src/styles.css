@@ -225,3 +225,5 @@
     margin-left: calc(470px * var(--card-scale));
     margin-top: calc(-170px * var(--card-scale));
   }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

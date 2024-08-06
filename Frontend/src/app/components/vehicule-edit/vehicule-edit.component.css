@@ -1,0 +1,37 @@
+.vehicle-details {
+    background-color: #f9f9f9; /* Couleur de fond douce */
+    border: 1px solid #ddd; /* Bordure légère */
+    border-radius: 8px; /* Coins arrondis */
+    padding: 16px; /* Espacement interne */
+    margin: 16px 0; /* Espacement externe */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Légère ombre */
+  }
+  
+  .vehicle-details p {
+    font-size: 16px; /* Taille de police */
+    line-height: 1.5; /* Hauteur de ligne */
+    color: #333; /* Couleur du texte */
+    margin: 8px 0; /* Espacement entre les paragraphes */
+  }
+  
+  .vehicle-details p strong {
+    font-weight: bold; /* Texte en gras */
+    color: #555; /* Couleur du texte fort */
+  }
+  
+  a[mat-button] {
+    display: inline-block;
+    margin-top: 16px; /* Espacement au-dessus du bouton */
+    padding: 8px 16px; /* Espacement interne du bouton */
+    color: #ffffff; /* Couleur du texte du bouton */
+    background-color: #3f51b5; /* Couleur de fond du bouton */
+    text-decoration: none; /* Supprime la décoration du lien */
+    border-radius: 4px; /* Coins arrondis du bouton */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Légère ombre */
+    transition: background-color 0.3s ease; /* Transition douce pour le changement de couleur */
+  }
+  
+  a[mat-button]:hover {
+    background-color: #303f9f; /* Couleur de fond du bouton au survol */
+  }
+  
