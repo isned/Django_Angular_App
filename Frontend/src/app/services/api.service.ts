@@ -100,4 +100,64 @@ export class ApiService {
   register(userData: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/auth/register/`, userData);
   }
+
+
+
+  getClients(): Observable<any[]> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any[]>(`${this.apiUrl}/client/`, { headers });
+  }
+  
+  addClient(client: any): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<any>(`${this.apiUrl}/client/`, client, { headers });
+  }
+  
+  deleteClient(id: number): Observable<void> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete<void>(`${this.apiUrl}/client/${id}/`, { headers });
+  }
+  getConducteurs(): Observable<any[]> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    
+    return this.http.get<any[]>(`${this.apiUrl}/conducteur/`, { headers });
+  }
+
+  getConducteurById(id: number): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.apiUrl}${id}/`, { headers });
+  }
+
+  addConducteur(conducteur: any): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.post<any>(`${this.apiUrl}/conducteur/`, conducteur, { headers });
+  }
+
+  updateConducteur(id: number, conducteur: any): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+    return this.http.put<any>(`${this.apiUrl}/conducteur/${id}/`, conducteur, { headers });
+  }
+
+  deleteConducteur(id: number): Observable<void> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+ 
+    return this.http.delete<void>(`${this.apiUrl}/conducteur/${id}/`, { headers });
+  }
+  getMarques(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/marque/`);
+  }
+
+  getCategories(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/categorie/`);
+  }
 }

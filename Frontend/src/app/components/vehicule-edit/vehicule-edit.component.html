@@ -7,7 +7,7 @@
 <form (ngSubmit)="saveChanges()">
   <div>
     <label for="marque">Marque:</label>
-    <input id="marque" [(ngModel)]="vehicule.marque" name="marque" required>
+    <input id="marque" [(ngModel)]="vehicule.marque_nom" name="marque" required>
   </div>
 
   <div>
@@ -38,6 +38,12 @@
   <div>
     <label for="carburant">Carburant:</label>
     <input id="carburant" [(ngModel)]="vehicule.carburant" name="carburant">
+  </div>
+
+  
+  <div>
+    <label for="etat">Catégorie:</label>
+    <input id="categorie" [(ngModel)]="vehicule.categorie_nom" name="categorie">
   </div>
 
   <div>

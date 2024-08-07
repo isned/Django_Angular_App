@@ -1,6 +1,7 @@
+<!-- vehicule-details.component.html -->
 <h2>Détails du Véhicule</h2>
 <div class="vehicle-details">
-  <p><strong>Marque:</strong> {{ vehicule.marque }}</p>
+  <p><strong>Marque:</strong> {{ vehicule.marque_nom }}</p>
   <p><strong>Modèle:</strong> {{ vehicule.modele }}</p>
   <p><strong>Immatriculation:</strong> {{ vehicule.immatriculation }}</p>
   <p><strong>Couleur:</strong> {{ vehicule.couleur }}</p>
@@ -9,6 +10,11 @@
   <p><strong>Carburant:</strong> {{ vehicule.carburant }}</p>
   <p><strong>Date d'immatriculation:</strong> {{ vehicule.date_immatriculation | date }}</p>
   <p><strong>Kilométrage:</strong> {{ vehicule.kilometrage }} km</p>
-  <!-- Ajoutez d'autres champs si nécessaire -->
+  <p><strong>Catégorie:</strong> {{ vehicule.categorie_nom }}</p>
+  <p><strong>Date de visite de service:</strong> {{ vehicule.date_visite_service | date }}</p>
+  <p><strong>Date d'assurance:</strong> {{ vehicule.date_assurance | date }}</p>
+  <p><strong>Date de vignette:</strong> {{ vehicule.date_vignette | date }}</p>
+  <p><strong>Carte grise:</strong> <a [href]="vehicule.carte_grise">{{ vehicule.carte_grise }}</a></p>
+  <p><strong>Carte d'exploitation:</strong> <a [href]="vehicule.carte_exploitation">{{ vehicule.carte_exploitation }}</a></p>
 </div>
 <a mat-button routerLink="/vehicules">Retour à la liste</a>

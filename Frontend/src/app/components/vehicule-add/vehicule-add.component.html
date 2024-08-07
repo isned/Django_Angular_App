@@ -1,1 +1,53 @@
-<p>vehicule-add works! hhdhhdhdhh</p>
+<!-- vehicule-add.component.html -->
+<div *ngIf="successMessage" class="alert alert-success">
+  {{ successMessage }}
+</div>
+
+<form [formGroup]="vehiculeForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="marque">Marque</label>
+    <select id="marque" formControlName="marque">
+      <option *ngFor="let marque of marques" [value]="marque.id">{{ marque.nom }}</option>
+    </select>
+  </div>
+  <div>
+    <label for="categorie">Catégorie</label>
+    <select id="categorie" formControlName="categorie">
+      <option *ngFor="let categorie of categories" [value]="categorie.id">{{ categorie.nom }}</option>
+    </select>
+  </div>
+  <div>
+    <label for="modele">Modèle</label>
+    <input id="modele" formControlName="modele">
+  </div>
+  <div>
+    <label for="immatriculation">Immatriculation</label>
+    <input id="immatriculation" formControlName="immatriculation">
+  </div>
+  <div>
+    <label for="couleur">Couleur</label>
+    <input id="couleur" formControlName="couleur">
+  </div>
+  <div>
+    <label for="annee">Année</label>
+    <input id="annee" formControlName="annee">
+  </div>
+  <div>
+    <label for="etat">État</label>
+    <input id="etat" formControlName="etat">
+  </div>
+  <div>
+    <label for="carburant">Carburant</label>
+    <input id="carburant" formControlName="carburant">
+  </div>
+  <div>
+    <label for="date_immatriculation">Date d'immatriculation</label>
+    <input id="date_immatriculation" formControlName="date_immatriculation" type="date">
+  </div>
+  <div>
+    <label for="kilometrage">Kilométrage</label>
+    <input id="kilometrage" formControlName="kilometrage">
+  </div>
+
+  <button type="submit">Ajouter Véhicule</button>
+</form>

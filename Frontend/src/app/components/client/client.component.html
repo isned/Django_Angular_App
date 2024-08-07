@@ -1,1 +1,105 @@
-<p>client works!</p>
+<!-- Main container for the client list -->
+<div class="client-container">
+    <h2>Liste des Clients</h2>
+  
+    <!-- Check if there are clients to display -->
+    <ng-container *ngIf="clients.length > 0; else noClients">
+      <table mat-table [dataSource]="clients" class="mat-elevation-z8">
+  
+        <!-- Nom Column -->
+        <ng-container matColumnDef="nom">
+          <th mat-header-cell *matHeaderCellDef> Nom </th>
+          <td mat-cell *matCellDef="let client"> {{client.nom}} </td>
+        </ng-container>
+  
+        <!-- Prénom Column -->
+        <ng-container matColumnDef="prenom">
+          <th mat-header-cell *matHeaderCellDef> Prénom </th>
+          <td mat-cell *matCellDef="let client"> {{client.prenom}} </td>
+        </ng-container>
+  
+        <!-- Gender Column -->
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef> Genre </th>
+          <td mat-cell *matCellDef="let client"> {{client.gender}} </td>
+        </ng-container>
+  
+        <!-- Adresse Column -->
+        <ng-container matColumnDef="adresse">
+          <th mat-header-cell *matHeaderCellDef> Adresse </th>
+          <td mat-cell *matCellDef="let client"> {{client.adresse}} </td>
+        </ng-container>
+  
+        <!-- Téléphone Column -->
+        <ng-container matColumnDef="telephone">
+          <th mat-header-cell *matHeaderCellDef> Téléphone </th>
+          <td mat-cell *matCellDef="let client"> {{client.telephone}} </td>
+        </ng-container>
+  
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let client"> {{client.email}} </td>
+        </ng-container>
+  
+        <!-- Date de Naissance Column -->
+        <ng-container matColumnDef="date_naissance">
+          <th mat-header-cell *matHeaderCellDef> Date de Naissance </th>
+          <td mat-cell *matCellDef="let client"> {{client.date_naissance | date}} </td>
+        </ng-container>
+  
+        <!-- Lieu de Naissance Column -->
+        <ng-container matColumnDef="lieu_naissance">
+          <th mat-header-cell *matHeaderCellDef> Lieu de Naissance </th>
+          <td mat-cell *matCellDef="let client"> {{client.lieu_naissance}} </td>
+        </ng-container>
+  
+        <!-- Nationality Column -->
+        <ng-container matColumnDef="nationality">
+          <th mat-header-cell *matHeaderCellDef> Nationalité </th>
+          <td mat-cell *matCellDef="let client"> {{client.nationality}} </td>
+        </ng-container>
+  
+        <!-- CIN Column -->
+        <ng-container matColumnDef="cin">
+          <th mat-header-cell *matHeaderCellDef> CIN </th>
+          <td mat-cell *matCellDef="let client"> {{client.cin}} </td>
+        </ng-container>
+  
+        <!-- Est Conducteur Column -->
+        <ng-container matColumnDef="est_conducteur">
+          <th mat-header-cell *matHeaderCellDef> Conducteur </th>
+          <td mat-cell *matCellDef="let client"> {{client.est_conducteur ? 'Oui' : 'Non'}} </td>
+        </ng-container>
+  
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let client">
+            <button mat-icon-button (click)="viewDetails(client)">
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <button mat-icon-button (click)="editClient(client)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteClient(client)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </ng-container>
+  
+    <!-- Template for when no clients are available -->
+    <ng-template #noClients>
+      <p>Aucun client disponible.</p>
+    </ng-template>
+  
+    <button mat-raised-button color="primary" (click)="addClient()">
+      Ajouter un Client
+    </button>
+  </div>
+  

@@ -1,3 +1,4 @@
+// vehicule.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
@@ -8,12 +9,9 @@ import { ApiService } from '../../services/api.service';
   styleUrls: ['./vehicule.component.css']
 })
 export class VehiculeComponent implements OnInit {
-test() {
-throw new Error('Method not implemented.');
-}
   vehicules: any[] = [];
   errorMessage: string = '';
-  displayedColumns: string[] = ['marque', 'modele', 'immatriculation', 'couleur', 'annee', 'etat', 'carburant', 'date_immatriculation', 'kilometrage', 'actions'];
+  displayedColumns: string[] = ['marque_nom', 'modele', 'immatriculation', 'couleur', 'annee', 'etat', 'carburant', 'date_immatriculation', 'kilometrage', 'categorie_nom', 'actions'];
 
   constructor(private apiService: ApiService, private router: Router) { }
 
@@ -62,10 +60,7 @@ throw new Error('Method not implemented.');
     this.router.navigate(['/vehicules/add/add']);
   }
 
-
   isned(): void {
-    //console.log("isned")
     this.router.navigate(['/register']);
   }
-  
 }

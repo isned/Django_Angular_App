@@ -9,6 +9,7 @@ import { ClientComponent } from './components/client/client.component';
 import { VehiculeDetailsComponent } from './components/vehicule-details/vehicule-details.component';
 import { VehiculeEditComponent } from './components/vehicule-edit/vehicule-edit.component';
 import { VehiculeAddComponent } from './components/vehicule-add/vehicule-add.component';
+import { ConducteurComponent } from './components/conducteur/conducteur.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'vehicules/:id', component: VehiculeDetailsComponent },
   { path: 'vehicules/edit/:id', component: VehiculeEditComponent },
   { path: 'vehicules/add/add', component: VehiculeAddComponent },
+  { path: 'conducteurs', component: ConducteurComponent },
 
 ];
 

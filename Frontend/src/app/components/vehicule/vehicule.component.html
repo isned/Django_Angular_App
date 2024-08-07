@@ -1,17 +1,13 @@
-<!-- Main container for the vehicle list -->
+<!-- vehicule.component.html -->
 <div class="vehicle-container">
   <h2>Liste des Véhicules</h2>
 
- 
-
-
-  <!-- Check if there are vehicles to display -->
   <ng-container *ngIf="vehicules.length > 0; else noVehicles">
     <table mat-table [dataSource]="vehicules" class="mat-elevation-z8">
       <!-- Marque Column -->
-      <ng-container matColumnDef="marque">
+      <ng-container matColumnDef="marque_nom">
         <th mat-header-cell *matHeaderCellDef> Marque </th>
-        <td mat-cell *matCellDef="let vehicule"> {{vehicule.marque}} </td>
+        <td mat-cell *matCellDef="let vehicule"> {{vehicule.marque_nom}} </td>
       </ng-container>
 
       <!-- Modèle Column -->
@@ -62,6 +58,12 @@
         <td mat-cell *matCellDef="let vehicule"> {{vehicule.kilometrage}} km </td>
       </ng-container>
 
+      <!-- Catégorie Column -->
+      <ng-container matColumnDef="categorie_nom">
+        <th mat-header-cell *matHeaderCellDef> Catégorie </th>
+        <td mat-cell *matCellDef="let vehicule"> {{vehicule.categorie_nom}} </td>
+      </ng-container>
+
       <!-- Actions Column -->
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Actions </th>
@@ -83,15 +85,10 @@
     </table>
   </ng-container>
 
-  <!-- Template for when no vehicles are available -->
   <ng-template #noVehicles>
     <p>Aucun véhicule disponible.</p>
   </ng-template>
 
-
-  <button  (click)="isned()">
-  isned
-  </button>
 
   <button mat-raised-button color="primary" (click)="addVehicule()">
     Ajouter un Véhicule

@@ -1,0 +1,60 @@
+<div class="conducteur-container">
+    <h2>Liste des Conducteurs</h2>
+  
+    <ng-container *ngIf="conducteurs.length > 0; else noConducteurs">
+      <table mat-table [dataSource]="conducteurs" class="mat-elevation-z8">
+        <!-- Nom Column -->
+        <ng-container matColumnDef="nom">
+          <th mat-header-cell *matHeaderCellDef> Nom </th>
+          <td mat-cell *matCellDef="let conducteur"> {{conducteur.nom}} </td>
+        </ng-container>
+  
+        <!-- Prénom Column -->
+        <ng-container matColumnDef="prenom">
+          <th mat-header-cell *matHeaderCellDef> Prénom </th>
+          <td mat-cell *matCellDef="let conducteur"> {{conducteur.prenom}} </td>
+        </ng-container>
+  
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let conducteur"> {{conducteur.email}} </td>
+        </ng-container>
+  
+        <!-- Téléphone Column -->
+        <ng-container matColumnDef="telephone">
+          <th mat-header-cell *matHeaderCellDef> Téléphone </th>
+          <td mat-cell *matCellDef="let conducteur"> {{conducteur.telephone}} </td>
+        </ng-container>
+  
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let conducteur">
+            <button mat-icon-button (click)="viewDetails(conducteur)">
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <button mat-icon-button (click)="editConducteur(conducteur)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteConducteur(conducteur)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </ng-container>
+  
+    <!-- Template for when no conducteurs are available -->
+    <ng-template #noConducteurs>
+      <p>Aucun conducteur disponible.</p>
+    </ng-template>
+  
+    <button mat-raised-button color="primary" (click)="addConducteur()">
+      Ajouter un Conducteur
+    </button>
+  </div>
+  

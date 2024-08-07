@@ -26,7 +26,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { VehiculeAddComponent } from './components/vehicule-add/vehicule-add.component'; // Nécessaire pour les datepickers
+import { VehiculeAddComponent } from './components/vehicule-add/vehicule-add.component';
+import { ConducteurComponent } from './components/conducteur/conducteur.component'; // Nécessaire pour les datepickers
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { VehiculeAddComponent } from './components/vehicule-add/vehicule-add.com
     VehiculeDetailsComponent,
     VehiculeEditComponent,
     VehiculeAddComponent,
+    ConducteurComponent,
 
   ],
   imports: [
@@ -59,7 +61,10 @@ import { VehiculeAddComponent } from './components/vehicule-add/vehicule-add.com
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    BrowserModule,
+    MatIconModule,  // Add MatIconModule here
+    MatButtonModule,  // Add MatButtonModule here if using Angular Material buttons
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
