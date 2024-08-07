@@ -1,0 +1,39 @@
+<h2>Liste des Contrats</h2>
+<p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+<p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Numéro</th>
+      <th>Client</th>
+      <th>Conducteur</th>
+      <th>Véhicule</th>
+      <th>Date de Prise</th>
+      <th>Date de Retour</th>
+      <th>Total TTC</th>
+      <th>Reste</th>
+      <th>État</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let contrat of contrats">
+      <td>{{ contrat.numero }}</td>
+      <td>{{ contrat.client }}</td>
+      <td>{{ contrat.conducteur }}</td>
+      <td>{{ contrat.vehicule }}</td>
+      <td>{{ contrat.date_prise | date }}</td>
+      <td>{{ contrat.date_retour ? (contrat.date_retour | date) : 'N/A' }}</td>
+      <td>{{ contrat.total_ttc | currency }}</td>
+      <td>{{ contrat.reste ? (contrat.reste | currency) : 'N/A' }}</td>
+      <td>{{ contrat.etat }}</td>
+      <td>
+        <button (click)="viewDetails(contrat)">Voir</button>
+        <button (click)="editContrat(contrat)">Modifier</button>
+        <button (click)="deleteContrat(contrat)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+

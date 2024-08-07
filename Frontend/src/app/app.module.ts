@@ -27,7 +27,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { VehiculeAddComponent } from './components/vehicule-add/vehicule-add.component';
-import { ConducteurComponent } from './components/conducteur/conducteur.component'; // Nécessaire pour les datepickers
+import { ConducteurComponent } from './components/conducteur/conducteur.component';
+import { ContratComponent } from './components/contrat/contrat.component'; // Nécessaire pour les datepickers
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ConducteurComponent } from './components/conducteur/conducteur.componen
     VehiculeEditComponent,
     VehiculeAddComponent,
     ConducteurComponent,
+    ContratComponent,
 
   ],
   imports: [
