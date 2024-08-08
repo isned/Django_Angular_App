@@ -17,8 +17,19 @@ export class ContratDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
+    const id = Number(this.route.snapshot.paramMap.get('id')); // Convert id to number
+    if (!isNaN(id)) {
+      this.apiService.getContratById(id).subscribe(
+        (data) => {
+          this.contrat = data;
+        },
+        (error) => {
+          this.errorMessage = 'Erreur lors du chargement du contrat.';
+          console.error('Error loading contrat details', error);
+        }
+      );
+    } else {
+      this.errorMessage = 'ID de contrat invalide.';
+    }
   }
-
- 
 }

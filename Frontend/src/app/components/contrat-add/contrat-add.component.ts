@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
@@ -8,8 +8,11 @@ import { ApiService } from '../../services/api.service';
   templateUrl: './contrat-add.component.html',
   styleUrls: ['./contrat-add.component.css']
 })
-export class ContratAddComponent {
+export class ContratAddComponent implements OnInit {
   contratForm: FormGroup;
+  clients: any[] = [];
+  conducteurs: any[] = [];
+  vehicules: any[] = [];
   errorMessage: string = '';
   successMessage: string = '';
 
@@ -31,6 +34,33 @@ export class ContratAddComponent {
     });
   }
 
+  ngOnInit(): void {
+    this.loadClients();
+    this.loadConducteurs();
+    this.loadVehicules();
+  }
+
+  loadClients(): void {
+    this.apiService.getClients().subscribe(
+      (data) => { this.clients = data; },
+      (error) => { this.errorMessage = 'Erreur lors du chargement des clients.'; }
+    );
+  }
+
+  loadConducteurs(): void {
+    this.apiService.getConducteurs().subscribe(
+      (data) => { this.conducteurs = data; },
+      (error) => { this.errorMessage = 'Erreur lors du chargement des conducteurs.'; }
+    );
+  }
+
+  loadVehicules(): void {
+    this.apiService.getVehicules().subscribe(
+      (data) => { this.vehicules = data; },
+      (error) => { this.errorMessage = 'Erreur lors du chargement des véhicules.'; }
+    );
+  }
+
   onSubmit(): void {
     if (this.contratForm.valid) {
       this.apiService.addContrat(this.contratForm.value).subscribe(
@@ -40,7 +70,6 @@ export class ContratAddComponent {
         },
         (error) => {
           this.errorMessage = 'Erreur lors de l\'ajout du contrat.';
-          console.error('Error adding contrat', error);
         }
       );
     } else {

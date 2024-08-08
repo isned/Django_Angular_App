@@ -11,17 +11,23 @@
   
   <div>
     <label for="client">Client</label>
-    <input id="client" formControlName="client" type="text" />
+    <select id="client" formControlName="client">
+      <option *ngFor="let client of clients" [value]="client.id">{{ client.nom_complet }}</option>
+    </select>
   </div>
 
   <div>
     <label for="conducteur">Conducteur</label>
-    <input id="conducteur" formControlName="conducteur" type="text" />
+    <select id="conducteur" formControlName="conducteur">
+      <option *ngFor="let conducteur of conducteurs" [value]="conducteur.id">{{ conducteur.nom_complet }}</option>
+    </select>
   </div>
 
   <div>
     <label for="vehicule">Véhicule</label>
-    <input id="vehicule" formControlName="vehicule" type="text" />
+    <select id="vehicule" formControlName="vehicule">
+      <option *ngFor="let vehicule of vehicules" [value]="vehicule.id">{{ vehicule.marque }} {{ vehicule.modele }}</option>
+    </select>
   </div>
 
   <div>
@@ -46,7 +52,12 @@
 
   <div>
     <label for="etat">État</label>
-    <input id="etat" formControlName="etat" type="text" />
+    <select id="etat" formControlName="etat">
+      <option value="brouillon">Brouillon</option>
+      <option value="actif">Actif</option>
+      <option value="termine">Terminé</option>
+      <option value="annule">Annulé</option>
+    </select>
   </div>
 
   <button type="submit">Ajouter</button>
