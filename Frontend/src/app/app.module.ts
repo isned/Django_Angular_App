@@ -28,7 +28,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { VehiculeAddComponent } from './components/vehicule-add/vehicule-add.component';
 import { ConducteurComponent } from './components/conducteur/conducteur.component';
-import { ContratComponent } from './components/contrat/contrat.component'; // Nécessaire pour les datepickers
+import { ContratComponent } from './components/contrat/contrat.component';
+import { ContratAddComponent } from './components/contrat-add/contrat-add.component';
+import { ContratEditComponent } from './components/contrat-edit/contrat-edit.component';
+import { ContratDetailsComponent } from './components/contrat-details/contrat-details.component'; // Nécessaire pour les datepickers
 
 @NgModule({
   declarations: [
@@ -46,6 +49,9 @@ import { ContratComponent } from './components/contrat/contrat.component'; // N�
     VehiculeAddComponent,
     ConducteurComponent,
     ContratComponent,
+    ContratAddComponent,
+    ContratEditComponent,
+    ContratDetailsComponent,
 
   ],
   imports: [

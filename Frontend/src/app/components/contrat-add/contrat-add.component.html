@@ -1,0 +1,53 @@
+<h2>Ajouter un Contrat</h2>
+
+<p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+<p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+
+<form [formGroup]="contratForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="numero">Numéro</label>
+    <input id="numero" formControlName="numero" type="text" />
+  </div>
+  
+  <div>
+    <label for="client">Client</label>
+    <input id="client" formControlName="client" type="text" />
+  </div>
+
+  <div>
+    <label for="conducteur">Conducteur</label>
+    <input id="conducteur" formControlName="conducteur" type="text" />
+  </div>
+
+  <div>
+    <label for="vehicule">Véhicule</label>
+    <input id="vehicule" formControlName="vehicule" type="text" />
+  </div>
+
+  <div>
+    <label for="date_prise">Date de Prise</label>
+    <input id="date_prise" formControlName="date_prise" type="date" />
+  </div>
+
+  <div>
+    <label for="date_retour">Date de Retour</label>
+    <input id="date_retour" formControlName="date_retour" type="date" />
+  </div>
+
+  <div>
+    <label for="total_ttc">Total TTC</label>
+    <input id="total_ttc" formControlName="total_ttc" type="number" />
+  </div>
+
+  <div>
+    <label for="reste">Reste</label>
+    <input id="reste" formControlName="reste" type="number" />
+  </div>
+
+  <div>
+    <label for="etat">État</label>
+    <input id="etat" formControlName="etat" type="text" />
+  </div>
+
+  <button type="submit">Ajouter</button>
+</form>

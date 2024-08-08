@@ -1,4 +1,3 @@
-// vehicule.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
@@ -10,10 +9,11 @@ import { ApiService } from '../../services/api.service';
 })
 export class VehiculeComponent implements OnInit {
   vehicules: any[] = [];
+  filteredVehicules: any[] = [];
   errorMessage: string = '';
   displayedColumns: string[] = ['marque_nom', 'modele', 'immatriculation', 'couleur', 'annee', 'etat', 'carburant', 'date_immatriculation', 'kilometrage', 'categorie_nom', 'actions'];
 
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(private apiService: ApiService, private router: Router) {}
 
   ngOnInit(): void {
     this.getVehicules();
@@ -23,11 +23,22 @@ export class VehiculeComponent implements OnInit {
     this.apiService.getVehicules().subscribe(
       response => {
         this.vehicules = response;
+        this.filteredVehicules = [...this.vehicules]; // Initialize filteredVehicules with a copy of vehicules
       },
       error => {
         this.errorMessage = 'Erreur lors de la récupération des véhicules';
         console.error('Erreur lors de la récupération des véhicules', error);
       }
+    );
+  }
+
+  applyFilter(event: Event): void {
+    const input = event.target as HTMLInputElement; // Type assertion
+    const filterValue = input.value.trim().toLowerCase(); // Get the input value and convert it to lowercase
+
+    // Filter the vehicules based on the input value
+    this.filteredVehicules = this.vehicules.filter(vehicule =>
+      vehicule.immatriculation.toLowerCase().includes(filterValue)
     );
   }
 
@@ -40,13 +51,10 @@ export class VehiculeComponent implements OnInit {
   }
 
   deleteVehicule(vehicule: any): void {
-    console.log('Véhicule à supprimer:', vehicule); // Affichez les détails du véhicule pour débogage
-
     if (confirm('Êtes-vous sûr de vouloir supprimer ce véhicule ?')) {
       this.apiService.deleteVehicule(vehicule.id).subscribe(
         () => {
-          console.log(`Véhicule avec ID ${vehicule.id} supprimé.`); // Confirmez la suppression
-          this.getVehicules(); // Recharge la liste des véhicules
+          this.getVehicules(); // Refresh the vehicle list after deletion
         },
         error => {
           this.errorMessage = 'Erreur lors de la suppression du véhicule';

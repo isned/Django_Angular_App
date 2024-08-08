@@ -162,15 +162,20 @@ export class ApiService {
   }
 
   getContrats(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(`${this.apiUrl}/contrat/`);
   }
 
   addContrat(contrat: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, contrat);
+    return this.http.post<any>(`${this.apiUrl}/contrat/`, contrat);
   }
 
-  deleteContrat(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}${id}/`);
+  deleteContrat(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/contrat/${id}/`);
+  }
+  getContratById(id: number): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.apiUrl}/contrat/${id}/`, { headers });
   }
 
 }

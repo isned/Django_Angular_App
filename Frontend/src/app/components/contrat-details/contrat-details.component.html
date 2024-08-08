@@ -1,0 +1,17 @@
+<h2>Détails du Contrat</h2>
+
+<p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+<div *ngIf="contrat">
+  <p><strong>Numéro:</strong> {{ contrat.numero }}</p>
+  <p><strong>Client:</strong> {{ contrat.client }}</p>
+  <p><strong>Conducteur:</strong> {{ contrat.conducteur }}</p>
+  <p><strong>Véhicule:</strong> {{ contrat.vehicule }}</p>
+  <p><strong>Date de Prise:</strong> {{ contrat.date_prise | date }}</p>
+  <p><strong>Date de Retour:</strong> {{ contrat.date_retour ? (contrat.date_retour | date) : 'N/A' }}</p>
+  <p><strong>Total TTC:</strong> {{ contrat.total_ttc | currency }}</p>
+  <p><strong>Reste:</strong> {{ contrat.reste ? (contrat.reste | currency) : 'N/A' }}</p>
+  <p><strong>État:</strong> {{ contrat.etat }}</p>
+</div>
+
+

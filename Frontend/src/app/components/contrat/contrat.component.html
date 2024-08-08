@@ -2,6 +2,13 @@
 <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
 <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
 
+<div>
+  <button (click)="addContrat()">Ajouter Contrat</button>
+  <input type="text" [(ngModel)]="searchTerm" placeholder="Rechercher par numéro, nom ou prénom" (input)="searchContrats()">
+  <button (click)="exportToCSV()">Exporter en CSV</button>
+  <button (click)="printContracts()">Imprimer</button>
+</div>
+
 <table>
   <thead>
     <tr>
@@ -18,7 +25,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let contrat of contrats">
+    <tr *ngFor="let contrat of filteredContrats">
       <td>{{ contrat.numero }}</td>
       <td>{{ contrat.client }}</td>
       <td>{{ contrat.conducteur }}</td>
@@ -36,4 +43,3 @@
     </tr>
   </tbody>
 </table>
-

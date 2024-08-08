@@ -2,8 +2,16 @@
 <div class="vehicle-container">
   <h2>Liste des Véhicules</h2>
 
+
+  <mat-form-field appearance="fill">
+    <mat-label>Filtrer par Immatriculation</mat-label>
+    <input matInput (input)="applyFilter($event)" placeholder="Rechercher">
+  </mat-form-field>
+  
+
+
   <ng-container *ngIf="vehicules.length > 0; else noVehicles">
-    <table mat-table [dataSource]="vehicules" class="mat-elevation-z8">
+    <table mat-table [dataSource]="filteredVehicules" class="mat-elevation-z8">
       <!-- Marque Column -->
       <ng-container matColumnDef="marque_nom">
         <th mat-header-cell *matHeaderCellDef> Marque </th>

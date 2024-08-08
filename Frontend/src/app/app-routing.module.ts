@@ -11,6 +11,9 @@ import { VehiculeEditComponent } from './components/vehicule-edit/vehicule-edit.
 import { VehiculeAddComponent } from './components/vehicule-add/vehicule-add.component';
 import { ConducteurComponent } from './components/conducteur/conducteur.component';
 import { ContratComponent } from './components/contrat/contrat.component';
+import { ContratEditComponent } from './components/contrat-edit/contrat-edit.component';
+import { ContratAddComponent } from './components/contrat-add/contrat-add.component';
+import { ContratDetailsComponent } from './components/contrat-details/contrat-details.component';
 
 
 const routes: Routes = [
@@ -26,6 +29,10 @@ const routes: Routes = [
   { path: 'vehicules/add/add', component: VehiculeAddComponent },
   { path: 'conducteurs', component: ConducteurComponent },
   { path: 'contrats', component: ContratComponent },
+  { path: 'contrats/add/add', component: ContratAddComponent },
+  { path: 'contrats/edit/:id', component: ContratEditComponent },
+  { path: 'contrats/:id', component: ContratDetailsComponent },
+ 
 
 ];
 
