@@ -40,10 +40,43 @@ export class ContratComponent implements OnInit {
       (data) => {
         this.contrats = data;
         this.filteredContrats = data;
+        this.checkAndUpdateContrats();  // Vérifier et mettre à jour les contrats
       },
       (error) => {
         this.errorMessage = 'Erreur lors du chargement des contrats.';
         console.error('Error loading contrats', error);
+      }
+    );
+  }
+
+  checkAndUpdateContrats(): void {
+    const today = new Date();
+    this.contrats.forEach(contrat => {
+      const dateRetour = new Date(contrat.date_retour);
+      if (dateRetour && dateRetour <= today && contrat.etat !== 'termine') {
+        contrat.etat = 'termine';  // Mettre à jour l'état du contrat à "terminé"
+        this.markVehiculeAsAvailable(contrat.vehicule);  // Marquer le véhicule comme disponible
+        this.apiService.updateContrat(contrat.id, { etat: 'termine' }).subscribe(
+          () => {
+            this.successMessage = `Contrat ${contrat.numero} mis à jour comme terminé.`;
+          },
+          (error) => {
+            this.errorMessage = `Erreur lors de la mise à jour du contrat ${contrat.numero}.`;
+            console.error('Error updating contract', error);
+          }
+        );
+      }
+    });
+  }
+
+  markVehiculeAsAvailable(vehicule: any): void {
+    this.apiService.updateVehicule(vehicule.id, { disponible: true }).subscribe(
+      () => {
+        this.successMessage += ` Véhicule ${vehicule.marque} ${vehicule.modele} maintenant disponible.`;
+      },
+      (error) => {
+        this.errorMessage = `Erreur lors de la mise à jour du véhicule ${vehicule.marque} ${vehicule.modele}.`;
+        console.error('Error updating vehicule', error);
       }
     );
   }
@@ -85,6 +118,27 @@ export class ContratComponent implements OnInit {
   viewDetails(contrat: any): void {
     this.router.navigate(['/contrats/', contrat.id]);
   }
+
+  annulerContrat(contrat: any): void {
+    if (confirm(`Êtes-vous sûr de vouloir annuler le contrat ${contrat.numero} ?`)) {
+      const updatedContrat = { ...contrat, etat: 'annule' };
+      this.apiService.updateContrat(contrat.id, updatedContrat).subscribe(
+        () => {
+          contrat.etat = 'annule';
+          this.successMessage = `Contrat ${contrat.numero} annulé avec succès.`;
+        },
+        (error) => {
+          if (error.error && error.error.non_field_errors) {
+            this.errorMessage = `Erreur: ${error.error.non_field_errors.join(', ')}`;
+          } else {
+            this.errorMessage = `Erreur lors de l'annulation du contrat ${contrat.numero}.`;
+          }
+          console.error('Error canceling contract', error);
+        }
+      );
+    }
+  }
+  
 
   searchContrats(): void {
     this.filteredContrats = this.contrats.filter(contrat =>

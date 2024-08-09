@@ -35,11 +35,13 @@
       <td>{{ contrat.total_ttc | currency }}</td>
       <td>{{ contrat.reste ? (contrat.reste | currency) : 'N/A' }}</td>
       <td>{{ contrat.etat }}</td>
-      <td>
-        <button (click)="viewDetails(contrat)">Voir</button>
-        <button (click)="editContrat(contrat)">Modifier</button>
-        <button (click)="deleteContrat(contrat)">Supprimer</button>
-      </td>
+     <td>
+  <button (click)="viewDetails(contrat)">Voir</button>
+  <button (click)="editContrat(contrat)">Modifier</button>
+  <button (click)="deleteContrat(contrat)">Supprimer</button>
+  <button *ngIf="contrat.etat !== 'annule'" (click)="annulerContrat(contrat)">Annuler</button> <!-- Bouton Annuler -->
+</td>
+
     </tr>
   </tbody>
 </table>

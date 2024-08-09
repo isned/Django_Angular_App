@@ -178,7 +178,13 @@ export class ApiService {
     return this.http.get<any>(`${this.apiUrl}/contrat/${id}/`, { headers });
   }
 
+  updateContrat(id: number, contrat: any): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   
+    return this.http.put<any>(`${this.apiUrl}/contrat/${id}/`, contrat, { headers });
+  }
+
 
   
   
