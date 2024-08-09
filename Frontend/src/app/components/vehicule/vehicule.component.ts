@@ -11,6 +11,7 @@ export class VehiculeComponent implements OnInit {
   vehicules: any[] = [];
   filteredVehicules: any[] = [];
   errorMessage: string = '';
+  successMessage: string = '';
   displayedColumns: string[] = ['marque_nom', 'modele', 'immatriculation', 'couleur', 'annee', 'etat', 'carburant', 'date_immatriculation', 'kilometrage', 'categorie_nom', 'actions'];
 
   constructor(private apiService: ApiService, private router: Router) {}
@@ -23,7 +24,7 @@ export class VehiculeComponent implements OnInit {
     this.apiService.getVehicules().subscribe(
       response => {
         this.vehicules = response;
-        this.filteredVehicules = [...this.vehicules]; // Initialize filteredVehicules with a copy of vehicules
+        this.filteredVehicules = [...this.vehicules];
       },
       error => {
         this.errorMessage = 'Erreur lors de la récupération des véhicules';
@@ -33,10 +34,9 @@ export class VehiculeComponent implements OnInit {
   }
 
   applyFilter(event: Event): void {
-    const input = event.target as HTMLInputElement; // Type assertion
-    const filterValue = input.value.trim().toLowerCase(); // Get the input value and convert it to lowercase
+    const input = event.target as HTMLInputElement;
+    const filterValue = input.value.trim().toLowerCase();
 
-    // Filter the vehicules based on the input value
     this.filteredVehicules = this.vehicules.filter(vehicule =>
       vehicule.immatriculation.toLowerCase().includes(filterValue)
     );
@@ -47,14 +47,44 @@ export class VehiculeComponent implements OnInit {
   }
 
   editVehicule(vehicule: any): void {
-    this.router.navigate(['/vehicules/edit', vehicule.id]);
+    const newState = prompt('Entrez le nouvel état du véhicule (disponible, en_reparation, loue)', vehicule.etat);
+    if (newState && ['disponible', 'en_reparation', 'loue'].includes(newState)) {
+      const updatedVehicule = { ...vehicule, etat: newState };
+      this.apiService.updateVehicule(vehicule.id, updatedVehicule).subscribe(
+        () => {
+          this.getVehicules();
+          this.successMessage = `Véhicule mis à jour avec succès.`;
+        },
+        (error) => {
+          this.errorMessage = `Erreur lors de la mise à jour du véhicule.`;
+          console.error('Error updating vehicule', error);
+        }
+      );
+    } else {
+      this.errorMessage = 'État invalide.';
+    }
+  }
+
+  markAsUnderRepair(vehicule: any): void {
+    const updatedVehicule = { ...vehicule, etat: 'en_reparation' };
+    this.apiService.updateVehicule(vehicule.id, updatedVehicule).subscribe(
+      () => {
+        this.getVehicules();
+        this.successMessage = `Véhicule marqué comme en réparation.`;
+      },
+      (error) => {
+        this.errorMessage = `Erreur lors de la mise à jour du véhicule.`;
+        console.error('Error updating vehicule', error);
+      }
+    );
   }
 
   deleteVehicule(vehicule: any): void {
     if (confirm('Êtes-vous sûr de vouloir supprimer ce véhicule ?')) {
       this.apiService.deleteVehicule(vehicule.id).subscribe(
         () => {
-          this.getVehicules(); // Refresh the vehicle list after deletion
+          this.getVehicules();
+          this.successMessage = 'Véhicule supprimé avec succès.';
         },
         error => {
           this.errorMessage = 'Erreur lors de la suppression du véhicule';
@@ -68,7 +98,4 @@ export class VehiculeComponent implements OnInit {
     this.router.navigate(['/vehicules/add/add']);
   }
 
-  isned(): void {
-    this.router.navigate(['/register']);
-  }
 }

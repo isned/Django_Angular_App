@@ -42,10 +42,13 @@
         <td mat-cell *matCellDef="let vehicule"> {{vehicule.annee}} </td>
       </ng-container>
 
-      <!-- État Column -->
+          <!-- État Column -->
       <ng-container matColumnDef="etat">
         <th mat-header-cell *matHeaderCellDef> État </th>
-        <td mat-cell *matCellDef="let vehicule"> {{vehicule.etat}} </td>
+        <td mat-cell *matCellDef="let vehicule">
+          {{vehicule.etat}}
+          <mat-icon *ngIf="vehicule.etat === 'en_reparation'" aria-label="En réparation">build</mat-icon>
+        </td>
       </ng-container>
 
       <!-- Carburant Column -->
@@ -72,21 +75,26 @@
         <td mat-cell *matCellDef="let vehicule"> {{vehicule.categorie_nom}} </td>
       </ng-container>
 
+     
       <!-- Actions Column -->
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Actions </th>
-        <td mat-cell *matCellDef="let vehicule">
-          <button mat-icon-button (click)="viewDetails(vehicule)">
-            <mat-icon>visibility</mat-icon>
-          </button>
-          <button mat-icon-button (click)="editVehicule(vehicule)">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button (click)="deleteVehicule(vehicule)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
+<ng-container matColumnDef="actions">
+  <th mat-header-cell *matHeaderCellDef> Actions </th>
+  <td mat-cell *matCellDef="let vehicule">
+    <button mat-icon-button (click)="viewDetails(vehicule)">
+      <mat-icon>visibility</mat-icon>
+    </button>
+    <button mat-icon-button (click)="editVehicule(vehicule)">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button (click)="markAsUnderRepair(vehicule)">
+      <mat-icon>build</mat-icon> <!-- Icon for repair status -->
+    </button>
+    <button mat-icon-button (click)="deleteVehicule(vehicule)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </td>
+</ng-container>
+
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

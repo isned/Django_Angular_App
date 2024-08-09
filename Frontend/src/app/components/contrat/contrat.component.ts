@@ -54,8 +54,8 @@ export class ContratComponent implements OnInit {
     this.contrats.forEach(contrat => {
       const dateRetour = new Date(contrat.date_retour);
       if (dateRetour && dateRetour <= today && contrat.etat !== 'termine') {
-        contrat.etat = 'termine';  // Mettre à jour l'état du contrat à "terminé"
-        this.markVehiculeAsAvailable(contrat.vehicule);  // Marquer le véhicule comme disponible
+        contrat.etat = 'termine';  // Update contract status to "terminated"
+        this.markVehiculeAsAvailable(contrat.vehicule);  // Mark vehicle as available
         this.apiService.updateContrat(contrat.id, { etat: 'termine' }).subscribe(
           () => {
             this.successMessage = `Contrat ${contrat.numero} mis à jour comme terminé.`;
@@ -68,9 +68,9 @@ export class ContratComponent implements OnInit {
       }
     });
   }
-
+  
   markVehiculeAsAvailable(vehicule: any): void {
-    this.apiService.updateVehicule(vehicule.id, { disponible: true }).subscribe(
+    this.apiService.updateVehicule(vehicule.id, { etat: 'disponible' }).subscribe(
       () => {
         this.successMessage += ` Véhicule ${vehicule.marque} ${vehicule.modele} maintenant disponible.`;
       },
@@ -80,7 +80,7 @@ export class ContratComponent implements OnInit {
       }
     );
   }
-
+  
   addContrat(): void {
     this.apiService.addContrat(this.newContrat).subscribe(
       (data) => {
